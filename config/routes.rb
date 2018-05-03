@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get   'static_pages/home'
-  get   'static_pages/dalimembers'
+  get   '/home',         to: 'static_pages#home'
+  get   '/dalimembers',  to: 'static_pages#dalimembers'
   root  'static_pages#home'
 end

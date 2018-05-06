@@ -4,11 +4,14 @@
 	<div class="row">
 	<% require 'open-uri' %>
 	<% parsed_json = JSON.parse(open("http://mappy.dali.dartmouth.edu/members.json").read) %>
-	<% int = 1 %>
+	<% num = 4 %>
+	<% int = 0 %>
 	<% parsed_json.each do |member| %>
-		<div class="col-md-3 mx-auto">
+		<% if int % num == 0 %>
+			<div class="row">
+		<% end %>
+		<div class="col-md-<%= 12 / num %>">
 			<img src="http://mappy.dali.dartmouth.edu/<%= member['iconUrl'] %>" class="memberpic">
-			
 			<h1>
 				<%= member['name'] %>
 				<% lat = member['lat_long'][0] %>
@@ -26,19 +29,22 @@
 					</a>
 				<% end %>
 			</h1>
-			<!-- <h2>
+			<h2>
 				<% for term in member['terms_on'] %>
-					<% term %> 
+					<%= term %> 
 				<% end %>
 				<% if member['project'] != [] %>
 					<% for item in member['project'] %>
 						- <%= item %>
 					<% end %>
 				<% end %>
-			</h2> -->
-			
+			</h2>
 			<p><%= member['message'] %></p>
 		</div>
+		<% if int % num == 3 %>
+			</div>
+		<% end %>
+		<% int = int + 1 %>
 	<% end %>
 	</div>
 </div>

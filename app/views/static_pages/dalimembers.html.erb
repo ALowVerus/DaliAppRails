@@ -1,4 +1,4 @@
-<% provide(:title, "DALI Members") %>
+<% provide(:title, "DALI persons") %>
 <div class="container">
 	<h1>Members of the DALI Lab</h1>
 	<div class="row">
@@ -6,41 +6,46 @@
 	<% parsed_json = JSON.parse(open("http://mappy.dali.dartmouth.edu/members.json").read) %>
 	<% num = 4 %>
 	<% int = 0 %>
-	<% parsed_json.each do |member| %>
-		<% if int % num == 0 %>
-			<div class="row">
-		<% end %>
+	
+	<% def do_this(person, num) %>
 		<div class="col-md-<%= 12 / num %>">
-			<img src="http://mappy.dali.dartmouth.edu/<%= member['iconUrl'] %>" class="memberpic">
+			<img src="http://mappy.dali.dartmouth.edu/<%= person['iconUrl'] %>" class="memberpic">
 			<h1>
-				<%= member['name'] %>
-				<% lat = member['lat_long'][0] %>
-				<% long = member['lat_long'][1] %>
+				<%= person['name'] %>
+				<% lat = person['lat_long'][0] %>
+				<% long = person['lat_long'][1] %>
 				<a href="https://www.google.com/maps/@<%= lat %>,<%= long %>,18z"> 
 					<i class="fas fa-map-marker-alt"></i>
 				</a>
-				<% if member['url'] != "" %>
-					<% if member['url'][0, 1] == "//" %>
-					<a href="http://<%= member['url'][2,-1] %>">
+				<% if person['url'] != "" %>
+					<% if person['url'][0, 1] == "//" %>
+					<a href="http://<%= person['url'][2,-1] %>">
 					<% else %>
-					<a href="<%= member['url'] %>">
+					<a href="<%= person['url'] %>">
 					<% end %>
 						<i class="fas fa-desktop"></i>
 					</a>
 				<% end %>
 			</h1>
 			<h2>
-				<% for term in member['terms_on'] %>
+				<% for term in person['terms_on'] %>
 					<%= term %> 
 				<% end %>
-				<% if member['project'] != [] %>
-					<% for item in member['project'] %>
+				<% if person['project'] != [] %>
+					<% for item in person['project'] %>
 						- <%= item %>
 					<% end %>
 				<% end %>
 			</h2>
-			<p><%= member['message'] %></p>
+			<p><%= person['message'] %></p>
 		</div>
+	<% end %>
+	
+	<% parsed_json.each do |member| %>
+		<% if int % num == 0 %>
+			<div class="row">
+		<% end %>
+		<% do_this(member, num) %>
 		<% if int % num == 3 %>
 			</div>
 		<% end %>

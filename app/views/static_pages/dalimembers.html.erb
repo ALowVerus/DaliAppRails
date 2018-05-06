@@ -1,55 +1,80 @@
-<% provide(:title, "DALI persons") %>
+<% provide(:title, "DALI members") %>
 <div class="container">
 	<h1>Members of the DALI Lab</h1>
-	<div class="row">
-	<% require 'open-uri' %>
-	<% parsed_json = JSON.parse(open("http://mappy.dali.dartmouth.edu/members.json").read) %>
-	<% num = 4 %>
-	<% int = 0 %>
 	
-	<% def do_this(person, num) %>
+	<div class="btn-group" data-toggle="buttons">
+		<a href="/dalimembers" class="btn btn-secondary">All</a>
+		<a href="/dalimembers?term=17W" class="btn btn-secondary">17W</a>
+		<a href="/dalimembers?term=17S" class="btn btn-secondary">17S</a>
+		<a href="/dalimembers?term=17X" class="btn btn-secondary">17X</a>
+		<a href="/dalimembers?term=17F" class="btn btn-secondary">17F</a>
+	</div>
+	
+	<!-- Add this later if I have time
+	<div class="btn-group" data-toggle="buttons">
+		<a href="/dalimembers" class="btn btn-secondary">All</a>
+		<a href="/dalimembers?term=17W" class="btn btn-secondary">Staff</a>
+		<a href="/dalimembers?term=17S" class="btn btn-secondary">NeuroViz</a>
+		<a href="/dalimembers?term=17X" class="btn btn-secondary">BASIIC</a>
+		<a href="/dalimembers?term=17F" class="btn btn-secondary">Changing Perspectives</a>
+		<a href="/dalimembers?term=18W" class="btn btn-secondary">PsychVR</a>
+		<a href="/dalimembers?term=18S" class="btn btn-secondary">Core</a>
+		<a href="/dalimembers?term=18S" class="btn btn-secondary">Pulse</a>
+		<a href="/dalimembers?term=18S" class="btn btn-secondary">Life You Can Lead</a>
+		<a href="/dalimembers?term=18S" class="btn btn-secondary">Seabird Apps</a>
+		<a href="/dalimembers?term=18S" class="btn btn-secondary">Protein Structure Builder</a
+		<a href="/dalimembers?term=18S" class="btn btn-secondary">Clearpay</a>
+		<a href="/dalimembers?term=18S" class="btn btn-secondary">Grafficity</a>
+		<a href="/dalimembers?term=18S" class="btn btn-secondary">Core</a>
+	</div>
+	-->
+	
+	<br><br>
+
+	<% def do_this(member, int, num) %>
+		<% if int % num == 0 %>
+			<div class="row">
+		<% end %>
 		<div class="col-md-<%= 12 / num %>">
-			<img src="http://mappy.dali.dartmouth.edu/<%= person['iconUrl'] %>" class="memberpic">
+			<img src="http://mappy.dali.dartmouth.edu/<%= member['iconUrl'] %>" class="memberpic">
 			<h1>
-				<%= person['name'] %>
-				<% lat = person['lat_long'][0] %>
-				<% long = person['lat_long'][1] %>
+				<%= member['name'] %>
+				<% lat = member['lat_long'][0] %>
+				<% long = member['lat_long'][1] %>
 				<a href="https://www.google.com/maps/@<%= lat %>,<%= long %>,18z"> 
 					<i class="fas fa-map-marker-alt"></i>
 				</a>
-				<% if person['url'] != "" %>
-					<% if person['url'][0, 1] == "//" %>
-					<a href="http://<%= person['url'][2,-1] %>">
+				<% if member['url'] != "" %>
+					<% if member['url'][0, 1] == "//" %>
+					<a href="http://<%= member['url'][2,-1] %>">
 					<% else %>
-					<a href="<%= person['url'] %>">
+					<a href="<%= member['url'] %>">
 					<% end %>
 						<i class="fas fa-desktop"></i>
 					</a>
 				<% end %>
 			</h1>
 			<h2>
-				<% for term in person['terms_on'] %>
+				<% for term in member['terms_on'] %>
 					<%= term %> 
 				<% end %>
-				<% if person['project'] != [] %>
-					<% for item in person['project'] %>
+				<% if member['project'] != [""] %>
+					<% for item in member['project'] %>
 						- <%= item %>
 					<% end %>
 				<% end %>
 			</h2>
-			<p><%= person['message'] %></p>
+			<p><%= member['message'] %></p>
 		</div>
-	<% end %>
-	
-	<% parsed_json.each do |member| %>
-		<% if int % num == 0 %>
-			<div class="row">
-		<% end %>
-		<% do_this(member, num) %>
 		<% if int % num == 3 %>
 			</div>
 		<% end %>
+	<% end %>
+	
+	<% int = 0 %>
+	<% @selected.each do |member| %>
+		<% do_this(member, int, 4) %>
 		<% int = int + 1 %>
 	<% end %>
-	</div>
+
 </div>

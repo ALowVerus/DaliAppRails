@@ -1,6 +1,6 @@
 <% provide(:title, "Home") %>
-<section id="homearea" class="screener padder">
-  <div class="container">
+<section id="homearea" class="full-page-parent">
+  <div class="container full-page-child">
     <div class="row">
       <div class="col-lg-4 col-sm-6 mx-auto">
         <h1 style="text-align: center;">Hello, I'm</h1>
@@ -9,10 +9,10 @@
         <br>
         <p class="lead" style="text-align:center;">and I like to code and eat Milanos.</p>
         <p style="font-size: 4rem; text-align: center;">
-          <a href="ALowResume11-17.docx" class="boxlink" style="font-size: 3.4rem;"><i class="fa fa-file-text iconlink" aria-hidden="true"></i></a>
-          <a href="http://www.facebook.com/Aidan.M.Low" class="boxlink"><i class="fa fa-facebook iconlink"></i></a>
-          <a href="http://www.linkedin.com/ALowVerus" class="boxlink"><i class="fa fa-linkedin iconlink"></i></a>
-          <a href="http://www.github.com/ALowVerus" class="boxlink"><i class="fa fa-github-square iconlink"></i></a>
+          <a href="ALowResume11-17.docx" class="boxlink" style="font-size: 3.4rem;"><i class="fas fa-file-alt iconlink"></i></a>
+          <a href="http://www.facebook.com/Aidan.M.Low" class="boxlink"><i class="fab fa-facebook iconlink"></i></a>
+          <a href="http://www.linkedin.com/ALowVerus" class="boxlink"><i class="fab fa-linkedin iconlink"></i></a>
+          <a href="http://www.github.com/ALowVerus" class="boxlink"><i class="fab fa-github-square iconlink"></i></a>
         </p>
       </div>
       <div class="col-lg-4 col-sm-6 hidden-xs-down mx-auto">
@@ -25,8 +25,8 @@
 </section>
 
 <!-- About Me -->
-<section id="aboutme" class="screener padder">
-  <div class="container">
+<section id="aboutme" class="full-page-parent">
+  <div class="container full-page-child">
     <div class="row">
       <div class="col-lg-8 col-sm-12 mx-auto">
         <h2>About Me</h2>
@@ -75,32 +75,30 @@
 </section>
 
 <!-- Art -->
-<section id="art" class="bg-light screener">
-    <div class="container artcontainer">
-      <div class="row">
-        <div class="col-lg-8 col-sm-12 mx-auto padder">
-          <div class="gal">
-            <% image_tag "/assets/art/LowPolyLand.png" %>
-            <% image_tag "/assets/art/GrenadiersExp.jpg" %>
-            <% image_tag "/assets/art/Kushano.jpg" %>
-            <% image_tag "/assets/art/OrisasStand1.png" %>
-            <% image_tag "/assets/art/ParticleCity.png" %>
-            <% image_tag "/assets/art/Ragnar.png" %>
-            <% image_tag "/assets/art/Wombat.jpg" %>
-            <% image_tag "/assets/art/ScaryMan.jpg" %>
-          </div>
+<section id="art" class="bg-light full-page-parent">
+  <div class="container artcontainer full-page-child">
+    <div class="row">
+      <div class="col-lg-8 col-sm-12 mx-auto padder">
+        <div class="gal">
+          <% image_tag "/assets/art/LowPolyLand.png" %>
+          <% image_tag "/assets/art/GrenadiersExp.jpg" %>
+          <% image_tag "/assets/art/Kushano.jpg" %>
+          <% image_tag "/assets/art/OrisasStand1.png" %>
+          <% image_tag "/assets/art/ParticleCity.png" %>
+          <% image_tag "/assets/art/Ragnar.png" %>
+          <% image_tag "/assets/art/Wombat.jpg" %>
+          <% image_tag "/assets/art/ScaryMan.jpg" %>
         </div>
       </div>
     </div>
-  <div id="overlay">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 mx-auto padder">
-          <br><br><br><br><br>
-          <h2>I do some art.</h2>
-          <p class="lead"><b>I've worked with Blender, Photoshop, DAZ, Maya, and watercolors.</b></p>
-          <button class ="btn btn-info" onclick="off()">Look at the pretty pictures!</button>
-        </div>
+  </div>
+  <div class="overlay full-page-child container">
+    <div class="row">
+      <div class="col-lg-4 mx-auto padder">
+        <br><br><br><br><br>
+        <h2>I do some art.</h2>
+        <p class="lead"><b>I've worked with Blender, Photoshop, DAZ, Maya, and watercolors.</b></p>
+        <button class ="btn btn-info" onclick="off()">Look at the pretty pictures!</button>
       </div>
     </div>
   </div>
